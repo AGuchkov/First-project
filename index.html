@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="css/main.css">
+    <title>Wedding invitation</title>
+</head>
+<body>
+    <!-- header -->
+<header class="header">
+    <div class="container header__container">
+        <div class="header__start">
+            <h1 class="header__names">Приглашение</h1>
+        </div>
+        <div class="header__end">
+            <div class="header__burger">
+                <button class="btn-menu" type="button">
+                    <span class="btn-menu__box">
+                        <span class="btn-menu__inner"></span>
+                    </span>
+                </button>
+            </div>
+            <nav class="header__nav">
+                <ul class="header__ul">
+                    <li class="header__li">
+                        <a data-goto=".section-top" href="#" class="header__link">Когда?</a>
+                    </li>
+                    <li class="header__li">
+                        <a data-goto=".section-swiper" href="#" class="header__link">К кому?</a>
+                    </li>
+                    <li class="header__li">
+                        <a data-goto=".section-form" href="#" class="header__link">Придете?</a>
+                    </li>
+                    <li class="header__li">
+                        <a data-goto=".section-map" href="#" class="header__link">Где?</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+</header>
+    <!-- /header -->
+
+    <!-- section-top -->
+<section class="section-top">
+    <div class="container section-top__container">
+        <div class="sectoin-top__count time-count">
+            <h2 class="time-count__title">Полина & Алексей</h2>
+            <h3 class="time-count__date">8 сентября 2021 в 16:00</h3>
+            <div class="time-count__content">
+                <div class="time-count__item time-count__days">
+                    <div class="time-count__val">00</div>
+                    <span class="time-count__text">дней</span>
+                </div>
+                <div class="time-count__item time-count__hours">
+                    <div class="time-count__val">00</div>
+                    <span class="time-count__text">часов</span>
+                </div>
+                <div class="time-count__item time-count__minutes">
+                    <div class="time-count__val">00</div>
+                    <span class="time-count__text">минут</span>
+                </div>
+                <div class="time-count__item time-count__seconds">
+                    <div class="time-count__val">00</div>
+                    <span class="time-count__text">секунд</span>
+                </div>
+            </div>
+            <div class="time-count__info">Осталось до свадьбы!</div>
+        </div>
+    </div>
+</section>
+    <!-- /section-top -->
+
+    <!-- section-swiper -->
+<section class="section-swiper">
+    <div class="container section-swiper__container">
+        <div class="section-swiper__wrapper">
+            <h2 class="section-swiper__title">К нам!</h2>
+            <div class="swiper-container swiper">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide">
+                        <img src="#" alt="">
+                    </div>
+                    <div class="swiper-slide">
+                        <img src="#" alt="">
+                    </div>
+                    <div class="swiper-slide">
+                        <img src="#" alt="">
+                    </div>
+                    <div class="swiper-slide">
+                        <img src="#" alt="">
+                    </div>
+                    <div class="swiper-slide">
+                        <img src="#" alt="">
+                    </div>
+                    <div class="swiper-slide">
+                        <img src="#" alt="">
+                    </div>
+                    <div class="swiper-slide">
+                        <img src="#" alt="">
+                    </div>
+                    <div class="swiper-slide">
+                        <img src="#" alt="">
+                    </div>
+                    <div class="swiper-slide">
+                        <img src="#" alt="">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+    <!-- /section-swiper -->
+
+    <!-- section-form -->
+<section class="section-form">
+    <div class="container section-form__container">
+        <div class="form">
+            <!-- confirm.php action="confirm.php" -->
+            <form id="form" method="POST" enctype="multipart/form-data">
+                <h2 class="form__title">Подтвердите присутствие</h2>
+                <div class="form__item">
+                    <label for="formGuestName" class="form__label">Введите Ваше имя и фамилию*:</label>
+                    <input id="formGuestName" type="text" name="guestname" class="form__input req">
+                </div>
+                <div class="form__item">
+                    <div class="options">
+                        <div class="options__item">
+                            <input id="formConfirm" checked type="radio" name="confirmation" value="confirm" class="options__input">
+                            <label for="formConfirm" class="options__label"><span>Подтверждаю присутствие</span></label>
+                        </div>
+                        <div class="options__item">
+                            <input id="formNotConfirm" type="radio" name="confirmation" value="notconfirm" class="options__input">
+                            <label for="formNotConfirm" class="options__label"><span>К сожалению, не смогу придти</span></label>
+                        </div>
+                    </div>
+                </div>
+                <div class="form__item">
+                    <div class="options">
+                        <div class="options__item">
+                            <input id="formAlone" checked type="radio" name="quantity" value="alone" class="options__input">
+                            <label for="formAlone" class="options__label"><span>Буду один/одна</span></label>
+                        </div>
+                        <div class="options__item">
+                            <input id="formInCompany" type="radio" name="quantity" value="incompany" class="options__input">
+                            <label for="formInCompany" class="options__label"><span>Буду с парой</span></label>
+                        </div>
+                    </div>
+                </div>
+                <div class="form__item hidden">
+                    <label for="formGuestName2" class="form__label">Введите имя и фамилию спутника*:</label>
+                    <input id="formGuestName2" type="text" name="guestname2" class="form__input req">
+                </div>
+                <div class="form__item">
+                    <div class="checkbox">
+                        <input id="formСhildren" type="checkbox" name="children" value="yes" class="checkbox__input">
+                        <label for="formСhildren" class="checkbox__label">С детьми</label>
+                    </div>
+                </div>
+                <div class="form__item">
+                    <div class="form__label">Какие напитки предпочитаете?</div>
+                    <select name="drinks" class="select">
+                        <option value="whiskey">Виски</option>
+                        <option value="vodka">Водка</option>
+                        <option value="wine">Вино</option>
+                        <option value="cognac">Коньяк</option>
+                        <option value="tincture">Настойка</option>
+                        <option value="non-alcoholic">Безалкогольные</option>
+                    </select>
+                </div>
+                <button class="form__button" type="submit">Отправить</button>
+            </form>
+        </div>
+    </div>
+</section>
+    <!-- /section-form -->
+
+    <!-- section-map -->
+<section class="section-map">
+    <div class="container section-map__container">
+        <div class="section-map__wrapper">
+            <h2 class="sectiom-map__tittle">Здесь</h2>
+            <div class="section-map__content">
+                <div class="section-map__map"><script type="text/javascript" charset="utf-8" async src="https://api-maps.yandex.ru/services/constructor/1.0/js/?um=constructor%3Ae82850f53a16439c10f672d7a8d2844d892f5ad25d582e7ec74c91139e796927&amp;lang=ru_RU&amp;scroll=fasle"></script></div>
+                <div class="section-map__info info">
+                    <div class="info__item">
+                        <h3 class="info__tittle">1. Выездная регистрация</h3>
+                        <div class="info__description"><span>Трактир <q>Федор Савельевич</q><br>В 16:00</span><br>Возле арки у входа в трактир</div>
+                    </div>
+                    <div class="info__item">
+                        <h3 class="info__tittle">2. Банкет</h3>
+                        <div class="info__description"><span>Трактир <q>Федор Савельевич</q><br>В 17:00</span><br>На втором этаж трактира</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+    <!-- /section-map -->
+
+<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>
