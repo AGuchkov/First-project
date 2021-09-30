@@ -43,7 +43,36 @@ document.addEventListener('DOMContentLoaded', () =>{
         })
     }
     //Шапка
+
+    // Ленивая загрузка
+    const lazyLoadMap = document.getElementById('map');
+    const windowHeight = document.documentElement.clientHeight;
+
+    window.addEventListener("scroll", lazyScroll);
+
+    function lazyScroll() {
+        if (!lazyLoadMap.classList.contains('_loaded')) {
+            getMap();
+        }
+    }
+
+    function getMap() {
+        const lazyLoadMapPos = lazyLoadMap.getBoundingClientRect().top + pageYOffset;
+        if (pageYOffset > lazyLoadMapPos - windowHeight) {
+            const loadMapUrl = lazyLoadMap.dataset.map;
+            if (loadMapUrl) {
+                lazyLoadMap.insertAdjacentHTML(
+                    "beforeend",
+                    `<iframe src="${loadMapUrl}"></iframe>`
+                );
+                lazyLoadMap.classList.add('_loaded');
+            }
+        }
+    }
+    // Ленивая загрузка
+
     //Таймер
+
     //До какой даты считаем
     const wedding = new Date('Sep 8 2021 16:00:00');
 
@@ -88,6 +117,7 @@ document.addEventListener('DOMContentLoaded', () =>{
     timeCount();
     setInterval(timeCount, 1000);
     //Таймер
+
     //Слайдер
     let swiper = new Swiper(".swiper", {
         effect: "coverflow",
@@ -101,48 +131,54 @@ document.addEventListener('DOMContentLoaded', () =>{
         modifier: 1,
         slideShadows: true,
         },
-        loop: true,
-        autoplay: {
-            delay: 3000,
-            disableOnInteraction: false,
+        pagination: {
+            el: ".swiper-pagination",
         },
+        loop: true,
     });
     //Слайдер
+
     //Форма
     const confirm = document.getElementsByName('confirmation');
     const quantity = document.getElementsByName('quantity');
     const formItem = document.querySelectorAll('.form__item')
     const form = document.getElementById('form');
+    const formAlone = document.getElementById('formAlone');
+    const formConfirm = document.getElementById('formConfirm');
     //Радио кнопки
     for (let i=0; i<confirm.length; i++) {
         confirm[i].onchange = checkConfirm;
     }
 
     for (let i=0; i<quantity.length; i++) {
-        quantity[i].onchange = checkConfirm;
+        quantity[i].onchange = checkQuantity;
+    }
+
+    function checkQuantity () {
+        if (this.value == 'Один') {
+            formItem[3].classList.add('hidden')
+        } else {
+            formItem[3].classList.remove('hidden')
+        }
     }
 
     function checkConfirm () {
-        if (this.value == 'notconfirm') {
+        if (this.value == 'Нет') {
             formItem[2].classList.add('hidden')
-            formItem[3].classList.toggle('hidden')
+            formItem[3].classList.add('hidden')
             formItem[4].classList.add('hidden')
             formItem[5].classList.add('hidden')
-        } else if (this.value == 'alone') {
-            formItem[3].classList.toggle('hidden')
-        } else if (this.value == 'incompany' && this.classList.contains('hidden')) {
-            formItem[3].classList.remove('hidden')
         } else {
             formItem[2].classList.remove('hidden')
-            formItem[3].classList.remove('hidden')
             formItem[4].classList.remove('hidden')
             formItem[5].classList.remove('hidden')
+            formAlone.checked = true;
         }
     }
 
     form.addEventListener('submit', formSend);
     //Отправка формы
-    async function formSend(e) {
+    function formSend(e) {
         e.preventDefault();
 
         let error = formValidate(form);
@@ -150,19 +186,25 @@ document.addEventListener('DOMContentLoaded', () =>{
         let formData = new FormData (form);
 
         if (error === 0) {
-            let response = await fetch('confirm.php', {
+            let response = fetch('confirm.php', {
                 method: 'POST',
                 body: formData
-            });
-            if (response.ok) {
-                let result = await response.json();
-                alert(result.message);
-                form.reset();
-            } else {
-                alert('Ошибка')
-            }
+            }).then(response => {
+                if (response.ok) {
+                    alert('Сообщение успешно отправлено!');
+                    form.reset();
+                    formConfirm.checked = true;
+                    formItem[2].classList.remove('hidden');
+                    formItem[3].classList.add('hidden');
+                    formItem[4].classList.remove('hidden');
+                    formItem[5].classList.remove('hidden');
+                    formAlone.checked = true;
+                } else {
+                    alert('Ошибка!')
+                }
+            })
         } else {
-            alert('Заполните обязательные поля')
+            alert('Заполните обязательные поля!')
         }
     }
     //Валидация формы
