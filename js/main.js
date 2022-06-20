@@ -131,14 +131,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     timeCount();
     (wedding > new Date()) ? setInterval(timeCount, 1000) : clearInterval(timeCount);
-
-    // setInterval(timeCount, 1000);
-
-    // if (wedding < new Date()) {
-    //     clearInterval(timeCount);
-    // }
-
-
     //Таймер
 
     //Слайдер
