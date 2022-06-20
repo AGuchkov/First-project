@@ -1,4 +1,4 @@
-## Приглашение на свадьбу [GitHub Pages](https://aguchkov.github.io/First-project/)
+## [Приглашение на свадьбу](https://aguchkov.github.io/First-project/)
 
 **Простое приглашение с функцией отправки сообщения в телеграмм. Использовал на собственной свадьбе)**
 
