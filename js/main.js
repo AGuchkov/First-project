@@ -1,7 +1,7 @@
 "use strict"
 
 //Запускаем скрипт после загрузки сайта
-document.addEventListener('DOMContentLoaded', () =>{
+document.addEventListener('DOMContentLoaded', () => {
     //Шапка
     const headerLinks = document.querySelectorAll('.header__link[data-goto]');
     const burgerMenu = document.querySelector('.btn-menu');
@@ -35,7 +35,7 @@ document.addEventListener('DOMContentLoaded', () =>{
         }
     }
 
-    if (burgerMenu){
+    if (burgerMenu) {
         burgerMenu.addEventListener("click", function (e) {
             document.body.classList.toggle('_lock');
             burgerMenu.classList.toggle('_active');
@@ -86,10 +86,12 @@ document.addEventListener('DOMContentLoaded', () =>{
     const minutesText = document.querySelector('.time-count__minutes .time-count__text');
     const secondsText = document.querySelector('.time-count__seconds .time-count__text');
 
+    const message = document.querySelector('.time-count__info');
+
     //Изменение окончаний в тексте
     function declOfNum(number, titles) {
         let cases = [2, 0, 1, 1, 1, 2];
-        return titles[ (number%100>4 && number%100<20)? 2 : cases[(number%10<5)?number%10:5] ];
+        return titles[(number % 100 > 4 && number % 100 < 20) ? 2 : cases[(number % 10 < 5) ? number % 10 : 5]];
     }
 
     //Сколько осталось до даты
@@ -111,11 +113,32 @@ document.addEventListener('DOMContentLoaded', () =>{
         hoursText.textContent = declOfNum(hours, ['час', 'часа', 'часов']);
         minutesText.textContent = declOfNum(minutes, ['минута', 'минуты', 'минут']);
         secondsText.textContent = declOfNum(seconds, ['секунда', 'секунды', 'секунд']);
+
+        if (leftUntil < 0) {
+            daysVal.textContent = 0;
+            hoursVal.textContent = 0;
+            minutesVal.textContent = 0;
+            secondsVal.textContent = 0;
+
+            daysText.textContent = 'дней';
+            hoursText.textContent = 'часов';
+            minutesText.textContent = 'минут';
+            secondsText.textContent = 'секунд';
+
+            message.textContent = 'Кажется вы не успели!'
+        }
     };
 
-    //Вызываем отсчет и обновляем
     timeCount();
-    setInterval(timeCount, 1000);
+    (wedding > new Date()) ? setInterval(timeCount, 1000) : clearInterval(timeCount);
+
+    // setInterval(timeCount, 1000);
+
+    // if (wedding < new Date()) {
+    //     clearInterval(timeCount);
+    // }
+
+
     //Таймер
 
     //Слайдер
@@ -125,11 +148,11 @@ document.addEventListener('DOMContentLoaded', () =>{
         centeredSlides: true,
         slidesPerView: "auto",
         coverflowEffect: {
-        rotate: 50,
-        stretch: 0,
-        depth: 300,
-        modifier: 1,
-        slideShadows: true,
+            rotate: 50,
+            stretch: 0,
+            depth: 300,
+            modifier: 1,
+            slideShadows: true,
         },
         pagination: {
             el: ".swiper-pagination",
@@ -146,15 +169,15 @@ document.addEventListener('DOMContentLoaded', () =>{
     const formAlone = document.getElementById('formAlone');
     const formConfirm = document.getElementById('formConfirm');
     //Радио кнопки
-    for (let i=0; i<confirm.length; i++) {
+    for (let i = 0; i < confirm.length; i++) {
         confirm[i].onchange = checkConfirm;
     }
 
-    for (let i=0; i<quantity.length; i++) {
+    for (let i = 0; i < quantity.length; i++) {
         quantity[i].onchange = checkQuantity;
     }
 
-    function checkQuantity () {
+    function checkQuantity() {
         if (this.value == 'Один') {
             formItem[3].classList.add('hidden')
         } else {
@@ -162,7 +185,7 @@ document.addEventListener('DOMContentLoaded', () =>{
         }
     }
 
-    function checkConfirm () {
+    function checkConfirm() {
         if (this.value == 'Нет') {
             formItem[2].classList.add('hidden')
             formItem[3].classList.add('hidden')
@@ -183,7 +206,7 @@ document.addEventListener('DOMContentLoaded', () =>{
 
         let error = formValidate(form);
 
-        let formData = new FormData (form);
+        let formData = new FormData(form);
 
         if (error === 0) {
             let response = fetch('confirm.php', {
